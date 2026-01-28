@@ -5,7 +5,7 @@ import csv
 import json
 
 # 🔹 Đường dẫn file gốc và file đầu ra
-input_path = "elephant_features_kde_enhanced.csv"
+input_path = "elephant_6features_cleaned.csv"
 output_quantized_path = "Quantized_Combined_Features.csv"
 output_scale_table_path = "Quantization_Scales.csv"
 output_label_mapping_csv = "label_encoding_mapping.csv"
