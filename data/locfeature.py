@@ -15,14 +15,22 @@ df = df.sort_values('timestamp')
 # Tính time_diff, dist, speed (như cũ)
 df['time_diff'] = df['timestamp'].diff().dt.total_seconds() / 3600
 coords = df[['location-lat', 'location-long']].values
-distances = [0]
+distances = [0] 
 for i in range(1, len(df)):
     distances.append(geodesic(coords[i-1], coords[i]).meters)
 
-df['dist'] = distances
-df['speed'] = (df['dist'] / df['time_diff']).fillna(0)
-df = df[df['speed'] > 5].copy()  # lọc nhiễu
 
+df['dist'] = distances
+df['speed_meters_per_hour'] = (df['dist'] / df['time_diff']).fillna(0)
+df = df[df['time_diff'] > 0].copy() # Xóa các dòng trùng giờ hoàn toàn
+MAX_SPEED_THRESHOLD = 40000  # 40 km/h (Ngưỡng an toàn)
+
+print(f"Trước khi lọc: {len(df)} dòng")
+df = df[df['speed_meters_per_hour'] < MAX_SPEED_THRESHOLD].copy()
+print(f"Sau khi lọc tốc độ ảo: {len(df)} dòng")
+
+# Gán lại cột speed chính thức để dùng cho các bước sau
+df['speed'] = df['speed_meters_per_hour']
 # Tính gia tốc
 df['raw_accel'] = df['speed'].diff() / df['time_diff']
 df['raw_accel'] = df['raw_accel'].replace([np.inf, -np.inf], 0).fillna(0)
@@ -30,7 +38,7 @@ df['raw_accel'] = df['raw_accel'].replace([np.inf, -np.inf], 0).fillna(0)
 # ===== THAY THẾ DBSCAN BẰNG KDE CHO POINT_IS_OUTSIDE =====
 print("⏳ Đang sử dụng KDE để xác định point_is_outside...")
 
-def kde_point_is_outside(df, bandwidth=0.01, threshold=0.2):
+def kde_point_is_outside(df, bandwidth=0.01, threshold=0.15):
     """
     Sử dụng KDE thay vì DBSCAN để xác định point_is_outside
     """
@@ -56,9 +64,8 @@ def kde_point_is_outside(df, bandwidth=0.01, threshold=0.2):
     
     return point_is_outside, prob_normalized
 
-# Sử dụng KDE thay vì DBSCAN
 coords = df[['location-lat', 'location-long']].values
-df['point_is_outside'], df['kde_probability_base'] = kde_point_is_outside(df, bandwidth=0.01, threshold=0.2)
+df['point_is_outside'], df['kde_probability_base'] = kde_point_is_outside(df, bandwidth=0.01, threshold=0.15)
 
 # ===== THÊM TURNING ANGLE VÀO DF GỐC =====
 print("⏳ Đang tính turning angle trên dữ liệu gốc...")
@@ -460,7 +467,7 @@ plt.subplot(2, 3, 5)
 plt.hist(df['kde_probability'], bins=50, alpha=0.7, edgecolor='black')
 plt.axvline(df['kde_probability'].mean(), color='red', linestyle='--',
            label=f'Mean: {df["kde_probability"].mean():.3f}')
-plt.axvline(0.2, color='orange', linestyle='--', label='Threshold: 0.2')
+plt.axvline(0.2, color='orange', linestyle='--', label='Threshold: 0.15')
 plt.title('KDE Probability Distribution')
 plt.xlabel('KDE Probability')
 plt.ylabel('Frequency')
