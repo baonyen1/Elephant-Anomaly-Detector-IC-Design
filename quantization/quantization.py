@@ -6,8 +6,8 @@ import json
 
 # 🔹 Đường dẫn file
 input_path = "C:\\Users\\nguye\\Documents\\TKVM\\training\\data\\elephant_features_selected.csv"
-output_quantized_path1 = "Quantized_Combined_Features.csv"
-output_quantized_path2 = "C:\\Users\\nguye\\Documents\\TKVM\\training\\model\\Quantized_Combined_Features.csv"
+output_quantized_path1 = "Quantized_Features.csv"
+output_quantized_path2 = "C:\\Users\\nguye\\Documents\\TKVM\\training\\model\\Quantized_Features.csv"
 output_scale_table_path = "Quantization_Scales.csv"
 output_label_mapping_csv = "label_encoding_mapping.csv"
 output_label_mapping_json = "label_encoding_mapping.json"
