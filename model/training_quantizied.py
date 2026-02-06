@@ -29,7 +29,7 @@ print("Test size:", X_test.shape)
 # ko su dung lai SMOTE/UnderSampler vi du lieu da duoc luong tu hoa truoc do
 # ko su dung gridsearch vi da chot dc feature va hyperparameter tot nhat truoc do
 rf_clf = RandomForestClassifier(
-    n_estimators=80, #so cay la 80
+    n_estimators=12, #so cay la 80
     max_depth=6, # do sau la 6
     random_state=42,
     n_jobs=-1,
@@ -63,27 +63,59 @@ roc_auc = roc_auc_score(y_test, y_pred_opt)
 print(f"F1 Score: {f1:.4f}")
 print(f"ROC AUC Score: {roc_auc:.4f}")
 
-# save model
-reload(joblib)
-class ElephantAnomalyDetector:
-    def __init__(self, model, threshold, feature_names):
-        self.model = model
-        self.threshold = threshold
-        self.feature_names = feature_names
-    def predict(self, X):
-        X = X[self.feature_names]
-        prob = self.model.predict_proba(X)[:, 1]
-        return (prob >= self.threshold).astype(int)
+import numpy as np
+from sklearn.tree import _tree
+import os
 
-    def predict_proba(self, X):
-        X = X[self.feature_names]
-        return self.model.predict_proba(X)
-final_model_package = ElephantAnomalyDetector(
-    model=rf_clf,
-    threshold=BEST_THRESHOLD,
-    feature_names=list(X.columns)
-)
-print('Xuat file model')
-filename = 'quantization_rf_model.pkl'
-joblib.dump(final_model_package, filename)
-print('Xuat file model thanh cong')
+def export_tree_to_verilog_hex(tree, feature_names, tree_idx):
+    tree_ = tree.tree_
+    
+    def recurse(node, depth):
+        indent = "    " * (depth + 1)
+        if tree_.feature[node] != _tree.TREE_UNDEFINED:
+            name = feature_names[tree_.feature[node]]
+            threshold = tree_.threshold[node]
+            
+            # Chuyển đổi sang số nguyên và định dạng Hex 8 ký tự (32-bit)
+            val_int = int(round(threshold))
+            # Đảm bảo xử lý số âm nếu có bằng cách dùng bitwise & 0xFFFFFFFF
+            hex_val = "{:08X}".format(val_int & 0xFFFFFFFF)
+            
+            code = f"{indent}if ({name} <= 32'h{hex_val}) begin\n"
+            code += recurse(tree_.children_left[node], depth + 1)
+            code += f"{indent}end else begin\n"
+            code += recurse(tree_.children_right[node], depth + 1)
+            code += f"{indent}end\n"
+            return code
+        else:
+            # Kết quả đầu ra của cây: 1'b1 là bất thường, 1'b0 là bình thường
+            res = "1'b1" if np.argmax(tree_.value[node]) == 1 else "1'b0"
+            return f"{indent}tree_out = {res};\n"
+
+    # Header module
+    header = f"module decision_tree_{tree_idx} (\n"
+    header += "    input wire [31:0] " + ", ".join(feature_names) + ",\n"
+    header += "    output reg tree_out\n);\n\n"
+    header += "always @(*) begin\n"
+    
+    body = recurse(0, 0)
+    
+    footer = "end\nendmodule\n"
+    return header + body + footer
+
+# Lấy danh sách đặc trưng từ X (mean_speed, kde_prob_min, v.v.)
+feature_list = list(X.columns)
+
+# Tạo thư mục lưu trữ nếu chưa có
+if not os.path.exists('verilog_trees'):
+    os.makedirs('verilog_trees')
+
+print("--- ĐANG TRÍCH XUẤT LOGIC HEX ---")
+for i, estimator in enumerate(rf_clf.estimators_):
+    v_code = export_tree_to_verilog_hex(estimator, feature_list, i+1)
+    file_path = f"verilog_trees/decision_tree_{i+1}.v"
+    with open(file_path, 'w') as f:
+        f.write(v_code)
+    print(f"Đã tạo: {file_path}")
+
+print("\nThành công! Hãy copy nội dung trong thư mục 'verilog_trees' vào Vivado.")
