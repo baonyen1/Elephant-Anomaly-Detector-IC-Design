@@ -18,8 +18,7 @@ from imblearn.under_sampling import RandomUnderSampler
 
 # 1. Đọc và chuẩn bị dữ liệu
 print("⏳ Đang tải dữ liệu...")
-df = pd.read_csv('elephant_6features_cleaned.csv')
-
+df = pd.read_csv('elephant_features_selected.csv')
 # Tách Feature (X) và Target (y)
 X = df.drop(columns=['is_outside'])
 y = df['is_outside']
@@ -55,8 +54,8 @@ pipeline = ImbPipeline([
 # 4. Thiết lập Grid Search Params
 # Lưu ý: Dùng prefix 'rf__' để chỉ định tham số cho step 'rf' trong pipeline
 param_grid = {
-    'rf__n_estimators': [200, 300, 400],
-    'rf__max_depth': [8, 10, 12],
+    'rf__n_estimators': [12],
+    'rf__max_depth': [6],
     'rf__min_samples_leaf': [1, 2, 5]
 }
 
@@ -157,7 +156,7 @@ print("="*40)
 
 # Biểu đồ Confusion Matrix sau khi tối ưu
 plt.figure(figsize=(6, 5))
-sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False)
+sns.heatmap(cm_opt, annot=True, fmt='d', cmap='Blues', cbar=False)
 plt.title('Confusion Matrix sau tối ưu Threshold')
 plt.ylabel('Thực tế (True)')
 plt.xlabel('Dự đoán (Predicted)')
@@ -201,4 +200,3 @@ print(f"F1-Score sau khi load lại: {f1_new:.4f}")
 
 if f1_new == best_f1:
     print("Model load lai y het nhu train")
-    print("Kết quả không khớp.")

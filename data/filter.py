@@ -19,12 +19,10 @@ distances = [0]
 for i in range(1, len(df)):
     distances.append(geodesic(coords[i-1], coords[i]).meters)
 
-
 df['dist'] = distances
 df['speed_meters_per_hour'] = (df['dist'] / df['time_diff']).fillna(0)
 df = df[df['time_diff'] > 0].copy() # Xóa các dòng trùng giờ hoàn toàn
 MAX_SPEED_THRESHOLD = 40000  # 40 km/h (Ngưỡng an toàn)
-
 print(f"Trước khi lọc: {len(df)} dòng")
 df = df[df['speed_meters_per_hour'] < MAX_SPEED_THRESHOLD].copy()
 print(f"Sau khi lọc tốc độ ảo: {len(df)} dòng")
@@ -35,7 +33,6 @@ df['speed'] = df['speed_meters_per_hour']
 df['raw_accel'] = df['speed'].diff() / df['time_diff']
 df['raw_accel'] = df['raw_accel'].replace([np.inf, -np.inf], 0).fillna(0)
 
-# ===== THAY THẾ DBSCAN BẰNG KDE CHO POINT_IS_OUTSIDE =====
 print("⏳ Đang sử dụng KDE để xác định point_is_outside...")
 
 def kde_point_is_outside(df, bandwidth=0.01, threshold=0.15):
@@ -215,7 +212,7 @@ print("⏳ Đang tạo features từ KDE...")
 
 # Thêm Step Length Statistics (mean, std, max, median)
 df['step_length'] = df['dist']
-resampled = df.set_index('timestamp').resample('2H')
+resampled = df.set_index('timestamp').resample('2h')
 
 feat_df = pd.DataFrame()
 feat_df['step_mean'] = resampled['step_length'].mean()
@@ -262,7 +259,7 @@ dist_centroid_resampled = df.set_index('timestamp')['dist_to_centroid'].resample
 feat_df['dist_to_centroid_mean'] = dist_centroid_resampled.reindex(feat_df.index).fillna(0)
 
 # Rolling Variance 4h, 8h
-df1h = df.set_index('timestamp').resample('1H').mean(numeric_only=True).interpolate()
+df1h = df.set_index('timestamp').resample('1h').mean(numeric_only=True).interpolate()
 df1h['speed_roll_var_4h'] = df1h['speed'].rolling(4).var().fillna(0)
 df1h['speed_roll_var_8h'] = df1h['speed'].rolling(8).var().fillna(0)
 df1h['accel_roll_var_4h'] = df1h['raw_accel'].rolling(4).var().fillna(0)
@@ -281,8 +278,8 @@ print("⏳ Đang thêm KDE features...")
 kde_resampled = df.set_index('timestamp').resample('2h')
 
 feat_df['kde_prob_mean'] = kde_resampled['kde_probability'].mean().reindex(feat_df.index).fillna(0)
-feat_df['kde_prob_min'] = kde_resampled['kde_probability'].min().reindex(feat_df.index).fillna(0)
-feat_df['kde_prob_max'] = kde_resampled['kde_probability'].max().reindex(feat_df.index).fillna(0)
+#feat_df['kde_prob_min'] = kde_resampled['kde_probability'].min().reindex(feat_df.index).fillna(0)
+#feat_df['kde_prob_max'] = kde_resampled['kde_probability'].max().reindex(feat_df.index).fillna(0)
 feat_df['kde_prob_std'] = kde_resampled['kde_probability'].std().reindex(feat_df.index).fillna(0)
 
 # KDE temporal features
@@ -291,11 +288,19 @@ feat_df['kde_prob_night_mean'] = kde_resampled['kde_prob_night'].mean().reindex(
 feat_df['kde_prob_adaptive_mean'] = kde_resampled['kde_prob_adaptive'].mean().reindex(feat_df.index).fillna(0)
 
 # KDE-based anomaly features
-feat_df['kde_low_prob_ratio'] = (kde_resampled['kde_probability'].apply(lambda x: (x < 0.2).sum() / len(x))
-                                .reindex(feat_df.index).fillna(0))
+feat_df['kde_low_prob_ratio'] = (
+    kde_resampled['kde_probability']
+    .apply(lambda x: (x < 0.2).sum() / len(x) if len(x) > 0 else 0)
+    .reindex(feat_df.index)
+    .fillna(0)
+)
 
-feat_df['kde_very_low_prob_count'] = (kde_resampled['kde_probability'].apply(lambda x: (x < 0.1).sum())
-                                     .reindex(feat_df.index).fillna(0))
+feat_df['kde_very_low_prob_count'] = (
+    kde_resampled['kde_probability']
+    .apply(lambda x: (x < 0.1).sum() if len(x) > 0 else 0)
+    .reindex(feat_df.index)
+    .fillna(0)
+)
 
 # ===== THÊM TURNING ANGLE FEATURES VÀO FEAT_DF =====
 print("⏳ Đang thêm turning angle features...")
@@ -393,19 +398,17 @@ plot_kde_analysis(df)
 # ===== XUẤT FILE =====
 # Reset index để đưa timestamp thành cột bình thường trước khi lưu
 feat_df_final = feat_df.fillna(0).reset_index()
-feat_df_final.to_csv('elephant_features_kde_enhanced.csv', index=False)
+feat_df_final.to_csv('elephant_features_kde.csv', index=False)
 
 # Lưu thêm file raw data với KDE và turning angle
 df_with_kde = df[['timestamp', 'location-lat', 'location-long', 'speed', 'raw_accel',
                   'point_is_outside', 'kde_probability', 'kde_prob_day', 'kde_prob_night',
                   'kde_prob_adaptive', 'kde_home_range', 'turning_angle', 'bearing']].copy()
-df_with_kde.to_csv('elephant_raw_with_kde.csv', index=False)
 
 print("\n🎉 XONG! KDE Features đã tính xong.")
 print("Số đặc trưng:", len(feat_df_final.columns))
 print("Files saved:")
 print("  - elephant_features_kde_enhanced.csv (features cho ML)")
-print("  - elephant_raw_with_kde.csv (raw data với KDE)")
 print("  - kde_analysis.png (visualization)")
 
 print(f"\n📊 Statistics:")
