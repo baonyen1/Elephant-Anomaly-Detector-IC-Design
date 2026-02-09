@@ -54,11 +54,11 @@ quantized_data = pd.DataFrame()
 scale_table = []
 
 # 🔹 Hàm lượng tử hóa sang uint16
-def quantize_column_to_uint16(series):
+def quantize_column_to_uint32(series):
     series = series.replace([np.inf, -np.inf], np.nan)
 
     if series.isnull().all():
-        return pd.Series([0]*len(series), dtype='uint16'), 1.0, 0.0, 0.0
+        return pd.Series([0]*len(series), dtype='uint32'), 1.0, 0.0, 0.0
 
     min_val = series.min()
     max_val = series.max()
@@ -66,12 +66,12 @@ def quantize_column_to_uint16(series):
     scale = (max_val - min_val) / (2**32 - 1) if max_val != min_val else 1.0
     series_filled = series.fillna(min_val)
 
-    quantized = ((series_filled - min_val) / scale).round().astype('uint16')
+    quantized = ((series_filled - min_val) / scale).round().astype('uint32')
     return quantized, scale, min_val, max_val
 
 # 🔹 Quantize từng feature
 for col in features_df.columns:
-    q_col, scale, min_val, max_val = quantize_column_to_uint16(features_df[col])
+    q_col, scale, min_val, max_val = quantize_column_to_uint32(features_df[col])
     quantized_data[col] = q_col
 
     scale_table.append({
