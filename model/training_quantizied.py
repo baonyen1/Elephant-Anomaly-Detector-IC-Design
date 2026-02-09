@@ -10,7 +10,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix, f1_score, roc_auc_score
 
 print("Training Quantized Model")
-df = pd.read_csv('Quantized_Combined_Features.csv')
+df = pd.read_csv('Quantized_Features.csv')
 
 X = df.drop(columns=['is_outside'])
 y = df['is_outside']
@@ -41,7 +41,7 @@ rf_clf.fit(X_train, y_train)
 
 y_pred = rf_clf.predict(X_test)
 y_prob = rf_clf.predict_proba(X_test)[:, 1]
-BEST_THRESHOLD = 0.7
+BEST_THRESHOLD = 0.73
 print("Using fixed threshold:", BEST_THRESHOLD)
 
 y_pred_opt = (y_prob >= BEST_THRESHOLD).astype(int)
