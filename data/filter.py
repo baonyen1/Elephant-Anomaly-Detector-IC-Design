@@ -35,7 +35,7 @@ df['raw_accel'] = df['raw_accel'].replace([np.inf, -np.inf], 0).fillna(0)
 
 print("⏳ Đang sử dụng KDE để xác định point_is_outside...")
 
-def kde_point_is_outside(df, bandwidth=0.01, threshold=0.15):
+def kde_point_is_outside(df, bandwidth=0.01, threshold=0.1):
     """
     Sử dụng KDE thay vì DBSCAN để xác định point_is_outside
     """
@@ -62,7 +62,22 @@ def kde_point_is_outside(df, bandwidth=0.01, threshold=0.15):
     return point_is_outside, prob_normalized
 
 coords = df[['location-lat', 'location-long']].values
-df['point_is_outside'], df['kde_probability_base'] = kde_point_is_outside(df, bandwidth=0.01, threshold=0.15)
+df['spatial_anomaly'], df['kde_probability'] = kde_point_is_outside(df, bandwidth=0.01, threshold=0.1)
+
+# ===== PERSISTENCE ANOMALY =====
+print("⏳ Xác định Persistence Anomaly (kéo dài)...")
+
+WINDOW_SIZE = 5     # số điểm GPS liên tiếp
+RATIO_TH = 0.4
+
+df['persistence_anomaly'] = (
+    df['spatial_anomaly']
+    .rolling(window=WINDOW_SIZE, min_periods=1)
+    .mean() > RATIO_TH
+).astype(int)
+
+print(f"   WINDOW_SIZE = {WINDOW_SIZE}, RATIO_TH = {RATIO_TH}")
+
 
 # ===== THÊM TURNING ANGLE VÀO DF GỐC =====
 print("⏳ Đang tính turning angle trên dữ liệu gốc...")
@@ -104,6 +119,20 @@ df['turning_angle'] = turning_angles
 
 print(f"✅ Đã tính turning angle: mean={np.mean(turning_angles):.2f}°, max={max(turning_angles):.2f}°")
 
+# ===== BEHAVIORAL ANOMALY (panic) =====
+print("⏳ Xác định Behavioral Anomaly (panic)...")
+
+SPEED_TH = df['speed'].mean() + 3 * df['speed'].std()
+TURNING_TH = df['turning_angle'].quantile(0.95)
+
+df['behavioral_anomaly'] = (
+    (df['speed'] > SPEED_TH) |
+    (df['turning_angle'] > TURNING_TH)
+).astype(int)
+
+print(f"   SPEED_TH = {SPEED_TH:.2f}")
+print(f"   TURNING_TH = {TURNING_TH:.2f}")
+
 # ===== THÊM KDE CHO PROBABILITY HOME RANGE =====
 print("⏳ Đang tính KDE Probability Home Range...")
 
@@ -114,7 +143,7 @@ def calculate_kde_probability(df, bandwidth=0.01):
     coords = df[['location-lat', 'location-long']].values
     
     # Sử dụng điểm bình thường (point_is_outside == 0) để fit KDE
-    normal_coords = coords[df['point_is_outside'] == 0]
+    normal_coords = coords[df['spatial_anomaly'] == 0]
     
     if len(normal_coords) < 10:
         print("⚠️ Không đủ điểm bình thường để tính KDE, dùng toàn bộ dữ liệu")
@@ -178,7 +207,7 @@ def calculate_temporal_kde(df):
             
         # Fit KDE cho period này
         coords_period = period_data[['location-lat', 'location-long']].values
-        normal_coords = coords_period[period_data['point_is_outside'] == 0]
+        normal_coords = coords_period[period_data['spatial_anomaly'] == 0]
         
         if len(normal_coords) < 5:
             normal_coords = coords_period
@@ -202,10 +231,38 @@ temporal_kde = calculate_temporal_kde(df)
 df['kde_prob_day'] = temporal_kde['kde_prob_day']
 df['kde_prob_night'] = temporal_kde['kde_prob_night']
 
+
 # Tính adaptive probability (dùng KDE phù hợp với thời gian hiện tại)
 df['kde_prob_adaptive'] = np.where(df['is_day'] == 1, 
                                   df['kde_prob_day'], 
                                   df['kde_prob_night'])
+
+# ===== TEMPORAL ANOMALY =====
+print("⏳ Xác định Temporal Anomaly (night activity)...")
+
+SPEED_NIGHT_TH = df['speed'].quantile(0.99)
+
+df['temporal_anomaly'] = (
+    (df['is_day'] == 0) &
+    (df['speed'] > SPEED_NIGHT_TH)
+).astype(int)
+
+print(f"   SPEED_NIGHT_TH = {SPEED_NIGHT_TH:.2f}")
+# ===== KẾT HỢP TẤT CẢ CÁC ANOMALY =====
+
+print("Gop tat ca cac anomaly")
+
+df['point_is_outside'] = (df['spatial_anomaly'] |
+                          df['persistence_anomaly'] |
+                            df['temporal_anomaly'] |
+                          df['behavioral_anomaly']
+).astype(int)
+
+print ("anomaly distribution:")
+print (df['spatial_anomaly'].mean() * 100)
+print (df['persistence_anomaly'].mean() * 100)
+print (df['behavioral_anomaly'].mean() * 100)
+print (df['point_is_outside'].mean() * 100)
 
 # ===== FEATURES ENGINEERING VỚI KDE =====
 print("⏳ Đang tạo features từ KDE...")
@@ -336,64 +393,6 @@ feat_df['is_night'] = ((feat_df['hour'] >= 18) | (feat_df['hour'] <= 6)).astype(
 
 # ===== VISUALIZATION KDE =====
 print("⏳ Đang tạo visualization...")
-
-def plot_kde_analysis(df):
-    """Vẽ biểu đồ phân tích KDE"""
-    
-    fig, axes = plt.subplots(2, 2, figsize=(15, 12))
-    
-    # Plot 1: GPS points colored by KDE probability
-    scatter = axes[0,0].scatter(df['location-long'], df['location-lat'], 
-                               c=df['kde_probability'], cmap='viridis', 
-                               alpha=0.6, s=10)
-    axes[0,0].set_title('GPS Points - KDE Probability')
-    axes[0,0].set_xlabel('Longitude')
-    axes[0,0].set_ylabel('Latitude')
-    plt.colorbar(scatter, ax=axes[0,0], label='KDE Probability')
-    
-    # Plot 2: KDE probability distribution
-    axes[0,1].hist(df['kde_probability'], bins=50, alpha=0.7, edgecolor='black')
-    axes[0,1].set_title('KDE Probability Distribution')
-    axes[0,1].set_xlabel('KDE Probability')
-    axes[0,1].set_ylabel('Frequency')
-    axes[0,1].axvline(df['kde_probability'].mean(), color='red', linestyle='--', 
-                     label=f'Mean: {df["kde_probability"].mean():.3f}')
-    axes[0,1].legend()
-    
-    # Plot 3: Day vs Night KDE comparison
-    day_data = df[df['is_day'] == 1]['kde_prob_day']
-    night_data = df[df['is_day'] == 0]['kde_prob_night']
-    
-    axes[1,0].hist(day_data, bins=30, alpha=0.5, label='Day KDE', color='orange')
-    axes[1,0].hist(night_data, bins=30, alpha=0.5, label='Night KDE', color='blue')
-    axes[1,0].set_title('Day vs Night KDE Probability')
-    axes[1,0].set_xlabel('KDE Probability')
-    axes[1,0].set_ylabel('Frequency')
-    axes[1,0].legend()
-    
-    # Plot 4: KDE vs DBSCAN comparison
-    kde_low = df['kde_probability'] < 0.2
-    dbscan_outside = df['point_is_outside'] == 1
-    
-    comparison_data = pd.DataFrame({
-        'KDE_Low': kde_low.astype(int),
-        'DBSCAN_Outside': dbscan_outside.astype(int)
-    })
-    
-    confusion_kde_dbscan = pd.crosstab(comparison_data['KDE_Low'], 
-                                      comparison_data['DBSCAN_Outside'])
-    
-    sns.heatmap(confusion_kde_dbscan, annot=True, fmt='d', cmap='Blues', ax=axes[1,1])
-    axes[1,1].set_title('KDE vs DBSCAN Comparison')
-    axes[1,1].set_xlabel('DBSCAN Outside')
-    axes[1,1].set_ylabel('KDE Low Probability')
-    
-    plt.tight_layout()
-    plt.savefig('kde_analysis.png', dpi=300, bbox_inches='tight')
-    plt.show()
-
-# Tạo visualization
-plot_kde_analysis(df)
 
 # ===== XUẤT FILE =====
 # Reset index để đưa timestamp thành cột bình thường trước khi lưu

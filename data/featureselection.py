@@ -141,13 +141,18 @@ for group, feats in feature_groups.items():
     sub = sub.sort_values('gini', ascending=False)
 
     if group == 'kde':
-        # Giữ TOP 3 feature KDE
-        top_kde = sub.head(3)
+        # Giữ TOP 2 feature KDE
+        top_kde = sub.head(2)
         selected_features.extend(top_kde['feature'].tolist())
-
-        print(f"[{group}] → chọn 3 feature:")
+    
+        print(f"[{group}] → chọn 2 feature:")
         for _, row in top_kde.iterrows():
             print(f"    - {row['feature']} (gini = {row['gini']:.4f})")
+    elif group == 'turning':
+        top_feats = sub.head(2)       
+        for _, row in top_feats.iterrows():
+            selected_features.append(row['feature'])
+            print(f"[{group}] → {row['feature']} (gini = {row['gini']:.4f})")
     else:
         # Các nhóm khác chỉ giữ 1
         best = sub.iloc[0]

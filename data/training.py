@@ -37,8 +37,8 @@ print(f"\nTrain size: {X_train.shape[0]} samples")
 print(f"Test size: {X_test.shape[0]} samples")
 
 # 3. Thiết lập Pipeline: SMOTE -> UnderSampler -> Random Forest
-# sampling_strategy=0.5: Số lượng mẫu thiểu số (1) sẽ bằng 50% số lượng mẫu đa số (0) sau SMOTE
-# sampling_strategy=0.8: Số lượng mẫu đa số (0) sẽ bị giảm xuống sao cho mẫu thiểu số bằng 80% mẫu đa số
+#sampling_strategy=0.5: Số lượng mẫu thiểu số (1) sẽ bằng 50% số lượng mẫu đa số (0) sau SMOTE
+#sampling_strategy=0.8: Số lượng mẫu đa số (0) sẽ bị giảm xuống sao cho mẫu thiểu số bằng 80% mẫu đa số
 pipeline = ImbPipeline([
     ('smote', SMOTE(sampling_strategy=0.5, random_state=42)),
     ('under', RandomUnderSampler(sampling_strategy=0.8, random_state=42)),
