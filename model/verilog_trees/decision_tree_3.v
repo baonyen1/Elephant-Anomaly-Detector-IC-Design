@@ -1,131 +1,99 @@
 module decision_tree_3 (
-    input wire [31:0] kde_very_low_prob_count, kde_low_prob_ratio, dist_to_centroid_mean, step_max, mean_speed, turning_angle_mean, turning_angle_median, hour,
+    input wire [15:0] kde_prob_mean, kde_prob_night_mean, dist_to_centroid_mean, step_median, mean_speed, accelerate, turning_angle_max, turning_angle_median, is_night,
     output reg tree_out
 );
 
 always @(*) begin
-    if (turning_angle_median <= 32'hEB4AAD80) begin
-        if (dist_to_centroid_mean <= 32'h7C214F40) begin
-            if (turning_angle_median <= 32'h2F9E1F20) begin
-                if (step_max <= 32'h31D22780) begin
-                    if (kde_low_prob_ratio <= 32'h80000000) begin
-                        if (hour <= 32'h51745D40) begin
-                            tree_out = 1'b0;
-                        end else begin
-                            tree_out = 1'b0;
-                        end
-                    end else begin
-                        if (kde_very_low_prob_count <= 32'h80000000) begin
-                            tree_out = 1'b0;
-                        end else begin
-                            tree_out = 1'b1;
-                        end
-                    end
-                end else begin
-                    if (dist_to_centroid_mean <= 32'h0CBADFE0) begin
-                        tree_out = 1'b1;
-                    end else begin
-                        tree_out = 1'b1;
-                    end
-                end
+    if (mean_speed <= 16'h140A) begin
+        if (dist_to_centroid_mean <= 16'h7B10) begin
+            if (kde_prob_mean <= 16'h199B) begin
+                tree_out = 1'b1;
             end else begin
-                if (kde_low_prob_ratio <= 32'h80000000) begin
-                    if (step_max <= 32'h31ED90A0) begin
-                        if (dist_to_centroid_mean <= 32'h74E92B80) begin
-                            tree_out = 1'b0;
-                        end else begin
-                            tree_out = 1'b0;
-                        end
-                    end else begin
-                        if (mean_speed <= 32'h46175380) begin
-                            tree_out = 1'b0;
-                        end else begin
-                            tree_out = 1'b1;
-                        end
-                    end
+                if (is_night <= 16'h8000) begin
+                    tree_out = 1'b0;
                 end else begin
-                    if (mean_speed <= 32'h38AE8FC0) begin
-                        if (kde_very_low_prob_count <= 32'h80000000) begin
-                            tree_out = 1'b0;
-                        end else begin
-                            tree_out = 1'b1;
-                        end
-                    end else begin
-                        if (dist_to_centroid_mean <= 32'h370ED420) begin
-                            tree_out = 1'b0;
-                        end else begin
-                            tree_out = 1'b1;
-                        end
-                    end
+                    tree_out = 1'b0;
                 end
             end
         end else begin
-            if (kde_very_low_prob_count <= 32'h80000000) begin
-                if (step_max <= 32'h1AE5E3C0) begin
-                    if (dist_to_centroid_mean <= 32'h7E449680) begin
-                        if (dist_to_centroid_mean <= 32'h7E3FAB00) begin
-                            tree_out = 1'b0;
-                        end else begin
-                            tree_out = 1'b1;
-                        end
-                    end else begin
-                        if (mean_speed <= 32'h0AAF7160) begin
-                            tree_out = 1'b0;
-                        end else begin
-                            tree_out = 1'b0;
-                        end
-                    end
-                end else begin
-                    if (turning_angle_mean <= 32'h1262D918) begin
-                        tree_out = 1'b0;
-                    end else begin
-                        if (turning_angle_mean <= 32'h4B569600) begin
-                            tree_out = 1'b1;
-                        end else begin
-                            tree_out = 1'b1;
-                        end
-                    end
-                end
-            end else begin
-                if (hour <= 32'hAE8BA300) begin
+            if (kde_prob_night_mean <= 16'h456F) begin
+                if (kde_prob_mean <= 16'h19BC) begin
                     tree_out = 1'b1;
                 end else begin
-                    if (dist_to_centroid_mean <= 32'h858D0500) begin
-                        if (turning_angle_median <= 32'h9BEDC180) begin
-                            tree_out = 1'b1;
-                        end else begin
-                            tree_out = 1'b1;
-                        end
-                    end else begin
-                        if (step_max <= 32'h104C6A80) begin
-                            tree_out = 1'b1;
-                        end else begin
-                            tree_out = 1'b1;
-                        end
-                    end
+                    tree_out = 1'b0;
                 end
+            end else begin
+                tree_out = 1'b0;
             end
         end
     end else begin
-        if (step_max <= 32'h00F68D70) begin
-            if (dist_to_centroid_mean <= 32'h54687140) begin
-                if (turning_angle_mean <= 32'hEC94B780) begin
-                    tree_out = 1'b0;
-                end else begin
+        if (kde_prob_mean <= 16'h19C8) begin
+            if (turning_angle_median <= 16'hED2D) begin
+                if (kde_prob_mean <= 16'h1988) begin
                     tree_out = 1'b1;
+                end else begin
+                    if (dist_to_centroid_mean <= 16'h4CE8) begin
+                        tree_out = 1'b0;
+                    end else begin
+                        tree_out = 1'b1;
+                    end
                 end
             end else begin
-                tree_out = 1'b1;
+                if (kde_prob_mean <= 16'h1604) begin
+                    tree_out = 1'b1;
+                end else begin
+                    tree_out = 1'b0;
+                end
             end
         end else begin
-            if (turning_angle_median <= 32'hEB83A200) begin
-                if (hour <= 32'h3A2E8BC0) begin
-                    tree_out = 1'b1;
+            if (accelerate <= 16'h51E2) begin
+                if (step_median <= 16'h4257) begin
+                    if (mean_speed <= 16'h57BA) begin
+                        tree_out = 1'b0;
+                    end else begin
+                        if (step_median <= 16'h311A) begin
+                            tree_out = 1'b1;
+                        end else begin
+                            tree_out = 1'b0;
+                        end
+                    end
                 end else begin
-                    tree_out = 1'b0;
+                    if (kde_prob_mean <= 16'h3FF0) begin
+                        tree_out = 1'b1;
+                    end else begin
+                        if (turning_angle_median <= 16'h1558) begin
+                            tree_out = 1'b0;
+                        end else begin
+                            tree_out = 1'b0;
+                        end
+                    end
                 end
             end else begin
-                tree_out = 1'b1;
+                if (kde_prob_mean <= 16'h5804) begin
+                    if (kde_prob_mean <= 16'h4CC6) begin
+                        if (turning_angle_median <= 16'hE48F) begin
+                            tree_out = 1'b1;
+                        end else begin
+                            tree_out = 1'b0;
+                        end
+                    end else begin
+                        if (step_median <= 16'h4695) begin
+                            tree_out = 1'b1;
+                        end else begin
+                            tree_out = 1'b0;
+                        end
+                    end
+                end else begin
+                    if (turning_angle_median <= 16'hE27B) begin
+                        if (mean_speed <= 16'hD2FC) begin
+                            tree_out = 1'b0;
+                        end else begin
+                            tree_out = 1'b1;
+                        end
+                    end else begin
+                        tree_out = 1'b1;
+                    end
+                end
             end
         end
     end

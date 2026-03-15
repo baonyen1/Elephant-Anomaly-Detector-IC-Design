@@ -18,7 +18,7 @@ from imblearn.under_sampling import RandomUnderSampler
 
 # 1. Đọc và chuẩn bị dữ liệu
 print("⏳ Đang tải dữ liệu...")
-df = pd.read_csv('elephant_features_selected.csv')
+df = pd.read_csv('elephant_features_selected_improved.csv')
 # Tách Feature (X) và Target (y)
 X = df.drop(columns=['is_outside'])
 y = df['is_outside']

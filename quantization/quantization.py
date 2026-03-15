@@ -5,9 +5,9 @@ import csv
 import json
 
 # 🔹 Đường dẫn file
-input_path = "C:\\Users\\nguye\\Documents\\TKVM\\training\\data\\elephant_features_selected.csv"
+input_path = "C:\\Users\\nguye\\Documents\\TKVM\\software\\data\\elephant_features_selected_improved.csv"
 output_quantized_path1 = "Quantized_Features.csv"
-output_quantized_path2 = "C:\\Users\\nguye\\Documents\\TKVM\\training\\model\\Quantized_Features.csv"
+output_quantized_path2 = "C:\\Users\\nguye\\Documents\\TKVM\\software\\model\\Quantized_Features.csv"
 output_scale_table_path = "Quantization_Scales.csv"
 output_label_mapping_csv = "label_encoding_mapping.csv"
 output_label_mapping_json = "label_encoding_mapping.json"
@@ -54,24 +54,24 @@ quantized_data = pd.DataFrame()
 scale_table = []
 
 # 🔹 Hàm lượng tử hóa sang uint16
-def quantize_column_to_uint32(series):
+def quantize_column_to_uint16(series):
     series = series.replace([np.inf, -np.inf], np.nan)
 
     if series.isnull().all():
-        return pd.Series([0]*len(series), dtype='uint32'), 1.0, 0.0, 0.0
+        return pd.Series([0]*len(series), dtype='uint16'), 1.0, 0.0, 0.0
 
     min_val = series.min()
     max_val = series.max()
 
-    scale = (max_val - min_val) / (2**32 - 1) if max_val != min_val else 1.0
+    scale = (max_val - min_val) / (2**16 - 1) if max_val != min_val else 1.0
     series_filled = series.fillna(min_val)
 
-    quantized = ((series_filled - min_val) / scale).round().astype('uint32')
+    quantized = ((series_filled - min_val) / scale).round().astype('uint16')
     return quantized, scale, min_val, max_val
 
 # 🔹 Quantize từng feature
 for col in features_df.columns:
-    q_col, scale, min_val, max_val = quantize_column_to_uint32(features_df[col])
+    q_col, scale, min_val, max_val = quantize_column_to_uint16(features_df[col])
     quantized_data[col] = q_col
 
     scale_table.append({

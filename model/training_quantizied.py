@@ -76,12 +76,12 @@ def export_tree_to_verilog_hex(tree, feature_names, tree_idx):
             name = feature_names[tree_.feature[node]]
             threshold = tree_.threshold[node]
             
-            # Chuyển đổi sang số nguyên và định dạng Hex 8 ký tự (32-bit)
+            # Chuyển đổi sang số nguyên và định dạng Hex 4 ký tự (16-bit)
             val_int = int(round(threshold))
-            # Đảm bảo xử lý số âm nếu có bằng cách dùng bitwise & 0xFFFFFFFF
-            hex_val = "{:08X}".format(val_int & 0xFFFFFFFF)
-            
-            code = f"{indent}if ({name} <= 32'h{hex_val}) begin\n"
+            # Đảm bảo xử lý số âm nếu có bằng cách dùng bitwise & 0xFFFF
+            hex_val = "{:04X}".format(val_int & 0xFFFF)
+
+            code = f"{indent}if ({name} <= 16'h{hex_val}) begin\n"
             code += recurse(tree_.children_left[node], depth + 1)
             code += f"{indent}end else begin\n"
             code += recurse(tree_.children_right[node], depth + 1)
@@ -94,8 +94,9 @@ def export_tree_to_verilog_hex(tree, feature_names, tree_idx):
 
     # Header module
     header = f"module decision_tree_{tree_idx} (\n"
-    header += "    input wire [31:0] " + ", ".join(feature_names) + ",\n"
+    header += "    input wire [15:0] " + ", ".join(feature_names) + ",\n"
     header += "    output reg tree_out\n);\n\n"
+    header += ""
     header += "always @(*) begin\n"
     
     body = recurse(0, 0)
