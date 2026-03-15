@@ -1,0 +1,7 @@
+Running: xsim.dir/tb_random_forest_elephant_behav/xsimk.exe -simmode gui -wdb tb_random_forest_elephant_behav.wdb -simrunnum 0 -socket 53344
+Design successfully loaded
+Design Loading Memory Usage: 9912 KB (Peak: 9912 KB)
+Design Loading CPU Usage: 46 ms
+Simulation completed
+Simulation Memory Usage: 10548 KB (Peak: 10548 KB)
+Simulation CPU Usage: 46 ms

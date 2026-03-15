@@ -1,0 +1,352 @@
+
+*** Running vivado
+    with args -log design_1_random_forest_elepha_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_random_forest_elepha_0_0.tcl
+
+
+
+****** Vivado v2024.1 (64-bit)
+  **** SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+  **** IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+  **** SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+  **** Start of session at: Fri Mar 13 12:32:09 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source design_1_random_forest_elepha_0_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 514.934 ; gain = 199.992
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/8trees5depth'.
+WARNING: [IP_Flow 19-3656] If you move the project, the path for repository 'd:/8trees5depth' may become invalid. A better location for the repository would be in a path adjacent to the project. (Current project location is 'd:/8trees5depth/8trees5depth.runs/design_1_random_forest_elepha_0_0_synth_1'.)
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/AMDXILINX/Tool/Vivado/2024.1/data/ip'.
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: design_1_random_forest_elepha_0_0
+Command: synth_design -top design_1_random_forest_elepha_0_0 -part xc7z010clg400-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z010'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z010'
+INFO: [Device 21-403] Loading part xc7z010clg400-1
+INFO: [Device 21-9227] Part: xc7z010clg400-1 does not have CEAM library.
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 19432
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1378.965 ; gain = 448.016
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'design_1_random_forest_elepha_0_0' [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ip/design_1_random_forest_elepha_0_0/synth/design_1_random_forest_elepha_0_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'random_forest_elephant' [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/RandomForest.v:3]
+INFO: [Synth 8-6157] synthesizing module 'decision_tree_1' [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_1.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'decision_tree_1' (0#1) [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_1.v:3]
+INFO: [Synth 8-6157] synthesizing module 'decision_tree_2' [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_2.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'decision_tree_2' (0#1) [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_2.v:3]
+INFO: [Synth 8-6157] synthesizing module 'decision_tree_3' [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_3.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'decision_tree_3' (0#1) [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_3.v:3]
+INFO: [Synth 8-6157] synthesizing module 'decision_tree_4' [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_4.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'decision_tree_4' (0#1) [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_4.v:3]
+INFO: [Synth 8-6157] synthesizing module 'decision_tree_5' [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_5.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'decision_tree_5' (0#1) [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_5.v:3]
+INFO: [Synth 8-6157] synthesizing module 'decision_tree_6' [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_6.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'decision_tree_6' (0#1) [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_6.v:3]
+INFO: [Synth 8-6157] synthesizing module 'decision_tree_7' [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_7.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'decision_tree_7' (0#1) [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_7.v:3]
+INFO: [Synth 8-6157] synthesizing module 'decision_tree_8' [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_8.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'decision_tree_8' (0#1) [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/decision_tree_8.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'random_forest_elephant' (0#1) [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/RandomForest.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_random_forest_elepha_0_0' (0#1) [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ip/design_1_random_forest_elepha_0_0/synth/design_1_random_forest_elepha_0_0.v:53]
+WARNING: [Synth 8-6014] Unused sequential element anomaly_cnt_reg was removed.  [d:/8trees5depth/8trees5depth.gen/sources_1/bd/design_1/ipshared/76bb/RF85/RandomForest.v:65]
+WARNING: [Synth 8-7129] Port features[31] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[30] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[29] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[28] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[27] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[26] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[25] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[24] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[23] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[22] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[21] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[20] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[19] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[18] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[17] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[16] in module decision_tree_8 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[143] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[142] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[141] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[140] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[139] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[138] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[137] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[136] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[135] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[134] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[133] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[132] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[131] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[130] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[129] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[128] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[111] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[110] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[109] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[108] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[107] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[106] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[105] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[104] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[103] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[102] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[101] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[100] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[99] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[98] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[97] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[96] in module decision_tree_7 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[63] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[62] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[61] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[60] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[59] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[58] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[57] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[56] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[55] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[54] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[53] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[52] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[51] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[50] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[49] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[48] in module decision_tree_6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[127] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[126] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[125] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[124] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[123] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[122] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[121] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[120] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[119] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[118] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[117] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[116] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[115] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[114] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[113] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[112] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[111] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[110] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[109] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[108] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[107] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[106] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[105] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[104] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[103] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[102] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[101] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[100] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[99] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[98] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[97] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[96] in module decision_tree_5 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[143] in module decision_tree_4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[142] in module decision_tree_4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[141] in module decision_tree_4 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port features[140] in module decision_tree_4 is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1497.914 ; gain = 566.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1497.914 ; gain = 566.965
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1497.914 ; gain = 566.965
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1497.914 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1542.871 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.036 . Memory (MB): peak = 1544.496 ; gain = 1.625
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1544.496 ; gain = 613.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z010clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1544.496 ; gain = 613.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1544.496 ; gain = 613.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1544.496 ; gain = 613.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    4 Bit       Adders := 1     
+	   5 Input    3 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 1     
+	   3 Input    2 Bit       Adders := 1     
++---Registers : 
+	                2 Bit    Registers := 9     
+	                1 Bit    Registers := 9     
++---Muxes : 
+	   3 Input    2 Bit        Muxes := 9     
+	   2 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 70    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 80 (col length:40)
+BRAMs: 120 (col length: RAMB18 40 RAMB36 20)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1544.496 ; gain = 613.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1544.496 ; gain = 613.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1544.496 ; gain = 613.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1544.496 ; gain = 613.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 1544.496 ; gain = 613.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 1544.496 ; gain = 613.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 1544.496 ; gain = 613.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 1544.496 ; gain = 613.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 1544.496 ; gain = 613.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 1544.496 ; gain = 613.547
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+------+------+
+|      |Cell  |Count |
++------+------+------+
+|1     |LUT1  |     4|
+|2     |LUT2  |    59|
+|3     |LUT3  |    15|
+|4     |LUT4  |    20|
+|5     |LUT5  |    35|
+|6     |LUT6  |   263|
+|7     |MUXF7 |     9|
+|8     |FDRE  |    27|
++------+------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:34 ; elapsed = 00:00:35 . Memory (MB): peak = 1544.496 ; gain = 613.547
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:24 ; elapsed = 00:00:34 . Memory (MB): peak = 1544.496 ; gain = 566.965
+Synthesis Optimization Complete : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1544.496 ; gain = 613.547
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1544.496 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 9 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1544.496 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 97544561
+INFO: [Common 17-83] Releasing license: Synthesis
+41 Infos, 103 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 1544.496 ; gain = 1013.395
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1544.496 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/8trees5depth/8trees5depth.runs/design_1_random_forest_elepha_0_0_synth_1/design_1_random_forest_elepha_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP design_1_random_forest_elepha_0_0, cache-ID = 341dbab7f0ebc66a
+INFO: [Coretcl 2-1174] Renamed 9 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1544.496 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/8trees5depth/8trees5depth.runs/design_1_random_forest_elepha_0_0_synth_1/design_1_random_forest_elepha_0_0.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file design_1_random_forest_elepha_0_0_utilization_synth.rpt -pb design_1_random_forest_elepha_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Mar 13 12:33:03 2026...

@@ -1,0 +1,8 @@
+Time resolution is 1 ps
+CASE 1 : NORMAL
+Result = 1
+CASE 2 : ANOMALY
+Result = 2
+CASE 3 : NOISE TEST
+Result = 1
+$finish called at time : 250 ns : File "D:/8trees5depth/8trees5depth.srcs/sim_1/new/tb.v" Line 137

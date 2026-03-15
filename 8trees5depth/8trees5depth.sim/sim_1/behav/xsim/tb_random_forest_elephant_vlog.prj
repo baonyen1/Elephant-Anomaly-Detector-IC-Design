@@ -1,0 +1,18 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../8trees5depth.gen/sources_1/bd/design_1/ipshared/ec67/hdl" --include "../../../../8trees5depth.gen/sources_1/bd/design_1/ipshared/b28c/hdl" --include "D:/AMDXILINX/Tool/Vivado/2024.1/data/xilinx_vip/include" \
+"../../../../RF85/RandomForest.v" \
+"../../../../RF85/decision_tree_1.v" \
+"../../../../RF85/decision_tree_2.v" \
+"../../../../RF85/decision_tree_3.v" \
+"../../../../RF85/decision_tree_4.v" \
+"../../../../RF85/decision_tree_5.v" \
+"../../../../RF85/decision_tree_6.v" \
+"../../../../RF85/decision_tree_7.v" \
+"../../../../RF85/decision_tree_8.v" \
+"../../../../8trees5depth.srcs/sim_1/new/tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

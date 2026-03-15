@@ -1,0 +1,212 @@
+{
+  "project": {
+    "name": "elephant-behavior-classification",
+    "version": "2.0.0",
+    "description": "AI system for detecting elephant movement patterns with FPGA deployment support",
+    "domain": "wildlife-conservation"
+  },
+  
+  "claude": {
+    "model": "claude-sonnet-4",
+    "temperature": 0.3,
+    "max_tokens": 4096,
+    "context_window": "large"
+  },
+
+  "coding_style": {
+    "language": "python",
+    "version": "3.8+",
+    "formatter": "black",
+    "line_length": 100,
+    "docstring_style": "google",
+    "type_hints": true,
+    "naming_convention": {
+      "variables": "snake_case",
+      "functions": "snake_case",
+      "classes": "PascalCase",
+      "constants": "UPPER_SNAKE_CASE"
+    }
+  },
+  
+  "testing": {
+    "framework": "pytest",
+    "coverage_threshold": 80,
+    "test_pattern": "test_*.py",
+    "run_before_commit": true
+  },
+  
+  "data_handling": {
+    "primary_format": "csv",
+    "datetime_format": "ISO8601",
+    "missing_value_strategy": "interpolate_or_drop",
+    "outlier_detection": ["dbscan", "kde"],
+    "feature_engineering": {
+      "resampling_interval": "2H",
+      "rolling_windows": ["3H", "4H", "6H", "8H"]
+    }
+  },
+  
+  "ml_pipeline": {
+    "primary_model": "RandomForestClassifier",
+    "imbalance_strategy": "class_weight",
+    "validation_method": "stratified_kfold",
+    "n_folds": 5,
+    "primary_metric": "f1_macro",
+    "secondary_metrics": ["roc_auc", "recall", "precision"],
+    "random_state": 42
+  },
+  
+  "hyperparameters": {
+    "random_forest": {
+      "n_estimators": 12,
+      "max_depth": 6,
+      "min_samples_leaf": 1,
+      "class_weight": "balanced",
+      "criterion": "gini",
+      "oob_score": true
+    },
+    "smote": {
+      "sampling_strategy": 0.5
+    },
+    "undersampler": {
+      "sampling_strategy": 0.8
+    },
+    "kde": {
+      "bandwidth": "silverman_auto",
+      "kernel": "gaussian"
+    },
+    "dbscan": {
+      "eps": 0.005,
+      "min_samples": 10
+    },
+    "anomaly_weights": {
+      "spatial": 0.20,
+      "persistence": 0.20,
+      "behavioral": 0.20,
+      "temporal": 0.15,
+      "acceleration": 0.10,
+      "stationary": 0.15
+    },
+    "score_threshold": 0.25
+  },
+  
+  "file_organization": {
+    "source_code": "src/",
+    "software": "software/",
+    "software_data": "software/data/",
+    "software_quantization": "software/quantization/",
+    "software_model": "software/model/",
+    "tests": "tests/",
+    "data_raw": "data/raw/",
+    "data_processed": "data/processed/",
+    "models": "data/models/",
+    "outputs": "outputs/",
+    "docs": "docs/",
+    "notebooks": "notebooks/",
+    "verilog_output": "verilog_trees/"
+  },
+  
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "file": "logs/elephant_classifier.log",
+    "console": true
+  },
+  
+  "performance": {
+    "target_accuracy": 0.99,
+    "min_recall_outside": 0.95,
+    "max_false_negatives": 5,
+    "training_time_budget": "5_minutes"
+  },
+  
+  "deployment": {
+    "model_format": "pkl",
+    "fpga_target": "verilog",
+    "verilog_output_dir": "verilog_trees/",
+    "threshold_optimization": true,
+    "api_framework": "fastapi",
+    "container": "docker",
+    "monitoring": true
+  },
+  
+  "guardrails": {
+    "data_validation": {
+      "check_missing_values": true,
+      "check_outliers": true,
+      "check_date_range": true,
+      "check_coordinate_bounds": true
+    },
+    "model_validation": {
+      "min_f1_macro": 0.95,
+      "min_recall_outside": 0.90,
+      "max_false_negatives": 10
+    },
+    "code_quality": {
+      "run_linter": true,
+      "run_type_checker": true,
+      "check_docstrings": true
+    }
+  },
+  
+  "prompts": {
+    "default_context": [
+      "You are working on an elephant behavior classification system",
+      "Follow the pipeline: filter.py → training.py → quantization.py → training_quantizied.py",
+      "Weighted anomaly score uses AND logic, not OR",
+      "Quantization is for FPGA deployment - preserve scale tables",
+      "Verilog export uses 32-bit hex thresholds"
+    ],
+    "code_review_focus": [
+      "Data validation and error handling",
+      "Geographic calculation correctness",
+      "Feature leakage prevention",
+      "Quantization reversibility",
+      "Verilog output correctness"
+    ]
+  },
+  
+  "skills": {
+    "enabled": ["testing", "data-validation", "ml-evaluation"],
+    "custom_skills_path": ".claude/skills/"
+  },
+  
+  "hooks": {
+    "pre_commit": [
+      "run_linter",
+      "run_tests",
+      "check_data_quality"
+    ],
+    "pre_push": [
+      "run_full_test_suite",
+      "generate_coverage_report"
+    ]
+  },
+  
+  "documentation": {
+    "auto_generate": true,
+    "include_examples": true,
+    "update_on_change": true,
+    "formats": ["markdown", "html"]
+  },
+  
+  "version_control": {
+    "track_models": true,
+    "track_data_versions": true,
+    "model_registry": "local",
+    "experiment_tracking": "mlflow"
+  },
+  
+  "collaboration": {
+    "code_review_required": true,
+    "min_reviewers": 1,
+    "auto_assign_reviewers": true
+  },
+
+  "env": {
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "qwen3.5-plus",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "qwen3.5-plus",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "qwen3-coder-next"
+  }
+}
+

@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Fri Mar 13 12:33:21 2026
+# Process ID: 18612
+# Current directory: D:/8trees5depth/8trees5depth.runs/design_1_axi_gpio_0_6_synth_1
+# Command line: vivado.exe -log design_1_axi_gpio_0_6.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_axi_gpio_0_6.tcl
+# Log file: D:/8trees5depth/8trees5depth.runs/design_1_axi_gpio_0_6_synth_1/design_1_axi_gpio_0_6.vds
+# Journal file: D:/8trees5depth/8trees5depth.runs/design_1_axi_gpio_0_6_synth_1\vivado.jou
+# Running On        :DESKTOP-AUH71TB
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :26200
+# Processor Detail  :11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+# CPU Frequency     :2688 MHz
+# CPU Physical cores:6
+# CPU Logical cores :12
+# Host memory       :16948 MB
+# Swap memory       :1481 MB
+# Total Virtual     :18430 MB
+# Available Virtual :6514 MB
+#-----------------------------------------------------------
+source design_1_axi_gpio_0_6.tcl -notrace
