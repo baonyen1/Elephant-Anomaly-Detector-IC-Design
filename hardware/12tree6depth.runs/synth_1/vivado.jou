@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Thu Mar 12 20:13:41 2026
+# Process ID: 17144
+# Current directory: D:/12tree6depth/12tree6depth.runs/synth_1
+# Command line: vivado.exe -log design_1_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_wrapper.tcl
+# Log file: D:/12tree6depth/12tree6depth.runs/synth_1/design_1_wrapper.vds
+# Journal file: D:/12tree6depth/12tree6depth.runs/synth_1\vivado.jou
+# Running On        :DESKTOP-AUH71TB
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :26200
+# Processor Detail  :11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+# CPU Frequency     :2688 MHz
+# CPU Physical cores:6
+# CPU Logical cores :12
+# Host memory       :16948 MB
+# Swap memory       :1073 MB
+# Total Virtual     :18022 MB
+# Available Virtual :6377 MB
+#-----------------------------------------------------------
+source design_1_wrapper.tcl -notrace

@@ -1,0 +1,38 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Thu Mar 12 20:12:21 2026
+# Process ID: 14068
+# Current directory: D:/12tree6depth/12tree6depth.runs/design_1_axi_gpio_9_0_synth_1
+# Command line: vivado.exe -log design_1_axi_gpio_9_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_axi_gpio_9_0.tcl
+# Log file: D:/12tree6depth/12tree6depth.runs/design_1_axi_gpio_9_0_synth_1/design_1_axi_gpio_9_0.vds
+# Journal file: D:/12tree6depth/12tree6depth.runs/design_1_axi_gpio_9_0_synth_1\vivado.jou
+# Running On        :DESKTOP-AUH71TB
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :26200
+# Processor Detail  :11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+# CPU Frequency     :2688 MHz
+# CPU Physical cores:6
+# CPU Logical cores :12
+# Host memory       :16948 MB
+# Swap memory       :2125 MB
+# Total Virtual     :19074 MB
+# Available Virtual :3739 MB
+#-----------------------------------------------------------
+source design_1_axi_gpio_9_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 514.645 ; gain = 196.844
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/12tree6depth'.
+WARNING: [IP_Flow 19-3656] If you move the project, the path for repository 'd:/12tree6depth' may become invalid. A better location for the repository would be in a path adjacent to the project. (Current project location is 'd:/12tree6depth/12tree6depth.runs/design_1_axi_gpio_9_0_synth_1'.)
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/AMDXILINX/Tool/Vivado/2024.1/data/ip'.
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: design_1_axi_gpio_9_0
+INFO: [IP_Flow 19-6922] IPCACHE: Exporting cached entry da2b6e4d9968d79a to dir: D:/12tree6depth/12tree6depth.runs/design_1_axi_gpio_9_0_synth_1
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file d:/12tree6depth/12tree6depth.cache/ip/2024.1/d/a/da2b6e4d9968d79a/design_1_axi_gpio_0_10.dcp to D:/12tree6depth/12tree6depth.runs/design_1_axi_gpio_9_0_synth_1/design_1_axi_gpio_9_0.dcp.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file d:/12tree6depth/12tree6depth.cache/ip/2024.1/d/a/da2b6e4d9968d79a/design_1_axi_gpio_0_10_sim_netlist.v to D:/12tree6depth/12tree6depth.runs/design_1_axi_gpio_9_0_synth_1/design_1_axi_gpio_9_0_sim_netlist.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file d:/12tree6depth/12tree6depth.cache/ip/2024.1/d/a/da2b6e4d9968d79a/design_1_axi_gpio_0_10_sim_netlist.vhdl to D:/12tree6depth/12tree6depth.runs/design_1_axi_gpio_9_0_synth_1/design_1_axi_gpio_9_0_sim_netlist.vhdl.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file d:/12tree6depth/12tree6depth.cache/ip/2024.1/d/a/da2b6e4d9968d79a/design_1_axi_gpio_0_10_stub.v to D:/12tree6depth/12tree6depth.runs/design_1_axi_gpio_9_0_synth_1/design_1_axi_gpio_9_0_stub.v.
+INFO: [IP_Flow 19-6928] IPCACHE: copied cached file d:/12tree6depth/12tree6depth.cache/ip/2024.1/d/a/da2b6e4d9968d79a/design_1_axi_gpio_0_10_stub.vhdl to D:/12tree6depth/12tree6depth.runs/design_1_axi_gpio_9_0_synth_1/design_1_axi_gpio_9_0_stub.vhdl.
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP design_1_axi_gpio_9_0, cache-ID = da2b6e4d9968d79a.
+INFO: [Common 17-206] Exiting Vivado at Thu Mar 12 20:12:33 2026...

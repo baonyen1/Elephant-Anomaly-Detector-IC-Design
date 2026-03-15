@@ -1,0 +1,60 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.366431",
+   "Default View_TopLeft":"-1337,3",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0
+#  -string -flagsOSRD
+preplace port DDR_0 -pg 1 -lvl 5 -x 1550 -y 1300 -defaultsOSRD
+preplace port FIXED_IO_0 -pg 1 -lvl 5 -x 1550 -y 1330 -defaultsOSRD
+preplace inst random_forest_elepha_0 -pg 1 -lvl 4 -x 1350 -y 1060 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 1 -x 220 -y 1350 -defaultsOSRD
+preplace inst axi_interconnect_0 -pg 1 -lvl 2 -x 580 -y 920 -defaultsOSRD
+preplace inst axi_gpio_0 -pg 1 -lvl 3 -x 950 -y 90 -defaultsOSRD
+preplace inst axi_gpio_1 -pg 1 -lvl 3 -x 950 -y 250 -defaultsOSRD
+preplace inst axi_gpio_2 -pg 1 -lvl 3 -x 950 -y 410 -defaultsOSRD
+preplace inst axi_gpio_3 -pg 1 -lvl 3 -x 950 -y 570 -defaultsOSRD
+preplace inst axi_gpio_4 -pg 1 -lvl 3 -x 950 -y 730 -defaultsOSRD
+preplace inst axi_gpio_5 -pg 1 -lvl 3 -x 950 -y 890 -defaultsOSRD
+preplace inst axi_gpio_6 -pg 1 -lvl 3 -x 950 -y 1580 -defaultsOSRD
+preplace inst axi_gpio_7 -pg 1 -lvl 3 -x 950 -y 1420 -defaultsOSRD
+preplace inst axi_gpio_8 -pg 1 -lvl 3 -x 950 -y 1740 -defaultsOSRD
+preplace inst axi_gpio_9 -pg 1 -lvl 3 -x 950 -y 1900 -defaultsOSRD
+preplace inst axi_gpio_10 -pg 1 -lvl 3 -x 950 -y 1230 -defaultsOSRD
+preplace inst axi_gpio_11 -pg 1 -lvl 3 -x 950 -y 1050 -defaultsOSRD
+preplace inst proc_sys_reset_0 -pg 1 -lvl 1 -x 220 -y 1140 -defaultsOSRD
+preplace netloc S00_ACLK_1 1 0 4 30 1030 430 570 770 970 1100
+preplace netloc S00_ARESETN_1 1 1 2 420 580 780
+preplace netloc axi_gpio_0_gpio_io_o 1 3 1 1170 100n
+preplace netloc axi_gpio_1_gpio_io_o 1 3 1 1160 260n
+preplace netloc axi_gpio_2_gpio_io_o 1 3 1 1150 420n
+preplace netloc axi_gpio_3_gpio_io_o 1 3 1 1130 580n
+preplace netloc axi_gpio_4_gpio_io_o 1 3 1 1120 740n
+preplace netloc axi_gpio_5_gpio_io_o 1 3 1 1110 900n
+preplace netloc axi_gpio_6_gpio_io_o 1 3 1 1110 1120n
+preplace netloc axi_gpio_7_gpio_io_o 1 3 1 1120 1140n
+preplace netloc axi_gpio_8_gpio_io_o 1 3 1 1170 1160n
+preplace netloc axi_gpio_9_gpio_io_o 1 3 1 1140 980n
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 40 1040 400
+preplace netloc random_forest_elepha_0_done 1 3 2 1100 1220 1530
+preplace netloc random_forest_elepha_0_result 1 3 2 NJ 1240 1520
+preplace netloc axi_interconnect_0_M00_AXI 1 2 1 720 70n
+preplace netloc axi_interconnect_0_M01_AXI 1 2 1 740 230n
+preplace netloc axi_interconnect_0_M02_AXI 1 2 1 760 390n
+preplace netloc axi_interconnect_0_M03_AXI 1 2 1 730 550n
+preplace netloc axi_interconnect_0_M04_AXI 1 2 1 750 710n
+preplace netloc axi_interconnect_0_M05_AXI 1 2 1 760 870n
+preplace netloc axi_interconnect_0_M06_AXI 1 2 1 800 930n
+preplace netloc axi_interconnect_0_M07_AXI 1 2 1 790 950n
+preplace netloc axi_interconnect_0_M08_AXI 1 2 1 750 970n
+preplace netloc axi_interconnect_0_M09_AXI 1 2 1 720 990n
+preplace netloc axi_interconnect_0_M10_AXI 1 2 1 760 1010n
+preplace netloc axi_interconnect_0_M11_AXI 1 2 1 N 1030
+preplace netloc processing_system7_0_DDR 1 1 4 NJ 1310 NJ 1310 1160J 1300 NJ
+preplace netloc processing_system7_0_FIXED_IO 1 1 4 NJ 1330 NJ 1330 NJ 1330 NJ
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 440 640n
+levelinfo -pg 1 0 220 580 950 1350 1550
+pagesize -pg 1 -db -bbox -sgen 0 0 1670 1990
+"
+}
+0

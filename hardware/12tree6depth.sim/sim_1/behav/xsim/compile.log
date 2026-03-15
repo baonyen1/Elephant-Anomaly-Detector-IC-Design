@@ -1,0 +1,28 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/12tree6depth/RF/RandomForest.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module random_forest_elephant
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/12tree6depth/RF/decision_tree_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decision_tree_1
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/12tree6depth/RF/decision_tree_10.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decision_tree_10
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/12tree6depth/RF/decision_tree_11.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decision_tree_11
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/12tree6depth/RF/decision_tree_12.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decision_tree_12
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/12tree6depth/RF/decision_tree_2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decision_tree_2
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/12tree6depth/RF/decision_tree_3.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decision_tree_3
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/12tree6depth/RF/decision_tree_4.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decision_tree_4
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/12tree6depth/RF/decision_tree_5.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decision_tree_5
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/12tree6depth/RF/decision_tree_6.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decision_tree_6
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/12tree6depth/RF/decision_tree_7.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decision_tree_7
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/12tree6depth/RF/decision_tree_8.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decision_tree_8
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/12tree6depth/RF/decision_tree_9.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module decision_tree_9
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/12tree6depth/12tree6depth.srcs/sim_1/new/tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_random_forest_elephant

@@ -1,0 +1,39 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Fri Mar 13 12:42:48 2026
+# Process ID: 17144
+# Current directory: D:/12tree6depth
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent10232 D:\12tree6depth\12tree6depth.xpr
+# Log file: D:/12tree6depth/vivado.log
+# Journal file: D:/12tree6depth\vivado.jou
+# Running On        :DESKTOP-AUH71TB
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :26200
+# Processor Detail  :11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+# CPU Frequency     :2688 MHz
+# CPU Physical cores:6
+# CPU Logical cores :12
+# Host memory       :16948 MB
+# Swap memory       :1481 MB
+# Total Virtual     :18430 MB
+# Available Virtual :3524 MB
+#-----------------------------------------------------------
+start_gui
+open_project D:/12tree6depth/12tree6depth.xpr
+update_compile_order -fileset sources_1
+open_run synth_1 -name synth_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+report_power -name {power_1}
+report_utilization -name utilization_1
+close_design
+open_run synth_1 -name synth_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+report_power -name {power_1}
+report_utilization -name utilization_1
+close_design
+open_run impl_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+report_utilization -name utilization_1
